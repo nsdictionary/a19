@@ -28,10 +28,9 @@ interface BookDetailResponse {
 
 interface PageProps {
   params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default async function DetailPage({ params, searchParams }: PageProps) {
+export default async function DetailPage({ params }: PageProps) {
   const { id } = await params;
   const bookListDetail: BookDetailResponse = await getBookListByName(id);
 
