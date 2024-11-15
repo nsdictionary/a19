@@ -24,14 +24,11 @@ interface BookDetailResponse {
   num_results: number;
   results: BookListItem;
 }
-type Params = Promise<{ id: string }>;
 
-export default async function DetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const id = (await params).id;
+type tParams = Promise<{ id: string }>;
+
+export default async function DetailPage({ params }: { params: tParams }) {
+  const { id } = await params;
   const decodedId = decodeURIComponent(id);
   const bookListDetail: BookDetailResponse = await getBookListByName(decodedId);
 
