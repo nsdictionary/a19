@@ -26,9 +26,13 @@ interface BookDetailResponse {
 }
 
 interface PageProps {
-  params: Promise<{
-    id: string[];
-  }>;
+  params:
+    | {
+        id: string;
+      }
+    | Promise<{
+        id: string;
+      }>;
 }
 
 export default async function DetailPage({ params }: PageProps) {
