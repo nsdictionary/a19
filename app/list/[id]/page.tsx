@@ -33,7 +33,6 @@ export default async function DetailPage({
   const { id } = await params;
   const decodedId = decodeURIComponent(id);
   const bookListDetail: BookDetailResponse = await getBookListByName(decodedId);
-  console.log(bookListDetail);
 
   return (
     <div className={styles.container}>
