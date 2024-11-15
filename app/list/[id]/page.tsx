@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { getBookListByName } from "../../../api";
 import styles from "../../../styles/bookList.module.css";
 
@@ -26,23 +27,17 @@ interface BookDetailResponse {
 }
 
 interface PageProps {
-  params:
-    | {
-        id: string;
-      }
-    | Promise<{
-        id: string;
-      }>;
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default async function DetailPage({ params }: PageProps) {
+export default async function DetailPage({ params, searchParams }: PageProps) {
   const { id } = await params;
-  const decodedId = decodeURIComponent(id);
-  const bookListDetail: BookDetailResponse = await getBookListByName(decodedId);
+  const bookListDetail: BookDetailResponse = await getBookListByName(id);
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>{decodedId}</h1>
+      <h1 className={styles.title}>{id}</h1>
       <div className={styles.grid}>
         {bookListDetail.results.books.map((book, index) => (
           <div key={`${book.title}-${index}`} className={styles.card}>
