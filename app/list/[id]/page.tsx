@@ -26,9 +26,13 @@ interface BookDetailResponse {
 }
 type Params = Promise<{ id: string }>;
 
-export default async function DetailPage(props: { params: Params }) {
-  const params = await props.params;
-  const decodedId = decodeURIComponent(params.id);
+export default async function DetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const id = (await params).id;
+  const decodedId = decodeURIComponent(id);
   const bookListDetail: BookDetailResponse = await getBookListByName(decodedId);
 
   return (
