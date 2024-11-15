@@ -24,12 +24,10 @@ interface BookDetailResponse {
   num_results: number;
   results: BookListItem;
 }
+type Params = Promise<{ id: string }>;
 
-export default async function DetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function DetailPage(props: { params: Params }) {
+  const params = await props.params;
   const decodedId = decodeURIComponent(params.id);
   const bookListDetail: BookDetailResponse = await getBookListByName(decodedId);
 
