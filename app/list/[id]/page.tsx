@@ -27,11 +27,12 @@ interface BookDetailResponse {
 }
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default async function DetailPage({ params }: PageProps) {
-  const { id } = await params;
+export default async function DetailPage(props: PageProps) {
+  const params = await props.params;
+  const { id } = params;
   const bookListDetail: BookDetailResponse = await getBookListByName(id);
 
   return (
