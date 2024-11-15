@@ -30,8 +30,7 @@ export default async function DetailPage({
 }: {
   params: { id: string };
 }) {
-  const { id } = await params;
-  const decodedId = decodeURIComponent(id);
+  const decodedId = decodeURIComponent(params.id);
   const bookListDetail: BookDetailResponse = await getBookListByName(decodedId);
 
   return (
