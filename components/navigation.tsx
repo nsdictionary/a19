@@ -11,7 +11,11 @@ export default function Navigation() {
     <div className={styles.navContainer}>
       <nav className={styles.nav}>
         <ul>
-          <li className={path === "/" ? styles.active : ""}>
+          <li
+            className={
+              path === "/" || path?.startsWith("/list/") ? styles.active : ""
+            }
+          >
             <Link href="/">Home</Link>
           </li>
           <li className={path === "/about" ? styles.active : ""}>

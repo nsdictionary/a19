@@ -17,6 +17,7 @@ interface BookListResponse {
 }
 
 import { getBookList } from "../../api";
+import Link from "next/link";
 
 export default async function Home() {
   const bookList: BookListResponse = await getBookList();
@@ -29,7 +30,9 @@ export default async function Home() {
       <div className={styles.cardContainer}>
         {bookList.results.map((book) => (
           <div key={book.list_name_encoded} className={styles.card}>
-            {`${book.display_name} →`}
+            <Link
+              href={`/list/${book.list_name_encoded}`}
+            >{`${book.display_name} →`}</Link>
           </div>
         ))}
       </div>

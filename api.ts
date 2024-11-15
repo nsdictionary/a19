@@ -9,7 +9,7 @@ export async function getBookList() {
 
 export async function getBookListByName(name: string) {
   // await new Promise((resolve) => setTimeout(resolve, 1000));
-  const response = await fetch(`${API_URL}/lists?name=${name}`);
+  const response = await fetch(`${API_URL}/list?name=${name}`);
   const json = await response.json();
   return json;
 }
